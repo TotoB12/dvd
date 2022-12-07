@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <style>
+      .box {
+        box-sizing: content-box;
+        width: 400;
+        height: 221px;
+      }
+      img {
+        position: absolute;
+        width: 20%;
+      }
+    </style>
+  </head>
+  <body style="background-color: black;">
+    <img class="box" src=dvd.png />
+    <script>
+      var img = document.querySelector('img');
+      var x = 0;
+      var y = 0;
+      var xDirection = 1;
+      var yDirection = 1;
+      var xSpeed = 1;
+      var ySpeed = 1;
+      var xMax = window.innerWidth - img.width;
+      var yMax = window.innerHeight - img.height;
+      var interval = setInterval(function() {
+        x += xDirection * xSpeed;
+        y += yDirection * ySpeed;
+        if (x >= xMax) {
+          x = xMax;
+          xDirection = -1;
+        } else if (x <= 0) {
+          x = 0;
+          xDirection = 1;
+        }
+        if (y >= yMax) {
+          y = yMax;
+          yDirection = -1;
+        } else if (y <= 0) {
+          y = 0;
+          yDirection = 1;
+        }
+        img.style.top = y + 'px';
+        img.style.left = x + 'px';
+      }, 10);
+      var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+      var colorIndex = 0;
+      var colorInterval = setInterval(function() {
+        document.body.style.backgroundColor = colors[colorIndex];
+        colorIndex = (colorIndex + 1) % colors.length;
+      }, 10);
+      setTimeout(function() {
+        clearInterval(colorInterval);
+        document.body.style.backgroundColor = 'black';
+      }, 1000);
+      img.style.border = 'solid';
+      img.style.borderWidth = '0px';
+    </script>
+  </body>
+</html>
